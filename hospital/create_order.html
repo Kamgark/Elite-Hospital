@@ -420,7 +420,7 @@
                                             <!-- table html -->
                                             <div class="table-responsive m-t-40">
                                                     <div id="myTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                        <!-- <div class="row">
+                                                        <div class="row">
                                                             <div class="col-sm-12 col-md-6">
                                                                 <div class="dataTables_length" id="myTable_length">
                                                                     <label>Show <select name="myTable_length" aria-controls="myTable" class="form-control form-control-sm">
@@ -433,11 +433,11 @@
                                                             </div>
                                                             <div class="col-sm-12 col-md-6">
                                                                 <div id="myTable_filter" class="dataTables_filter">
-                                                                    <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="myTable">
+                                                                    <label>Search:<input type="search" class="form-control form-control-sm txt_name" placeholder="" aria-controls="myTable">
                                                                     </label>
                                                                 </div>
                                                             </div>
-                                                        </div> -->
+                                                        </div>
                                                         <div class="row">
                                                             <div class="col-sm-12">
                                                                 <table id="myTable" class="table table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
@@ -623,7 +623,24 @@
                                             <!-- table html -->
                                             <div class="table-responsive m-t-40">
                                                     <div id="myTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                        
+                                                            <div class="row">
+                                                                    <div class="col-sm-12 col-md-6">
+                                                                        <div class="dataTables_length" id="myTable_length">
+                                                                            <label>Show <select name="myTable_length" aria-controls="myTable" class="form-control form-control-sm">
+                                                                                <option value="10">10</option>
+                                                                                <option value="25">25</option>
+                                                                                <option value="50">50</option>
+                                                                                <option value="100">100</option>
+                                                                            </select> entries</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-md-6">
+                                                                        <div id="myTable_filter" class="dataTables_filter">
+                                                                            <label>Search:<input  type="search" class="form-control form-control-sm txt_name" placeholder="" aria-controls="myTable">
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                         <div class="row">
                                                             <div class="col-sm-12">
                                                                 <table id="myTable1" class="table table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
@@ -809,7 +826,24 @@
                                         <!-- table html -->
                                         <div class="table-responsive m-t-40">
                                                 <div id="myTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                    
+                                                        <div class="row">
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div class="dataTables_length" id="myTable_length">
+                                                                        <label>Show <select name="myTable_length" aria-controls="myTable" class="form-control form-control-sm">
+                                                                            <option value="10">10</option>
+                                                                            <option value="25">25</option>
+                                                                            <option value="50">50</option>
+                                                                            <option value="100">100</option>
+                                                                        </select> entries</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div id="myTable_filter" class="dataTables_filter">
+                                                                        <label>Search:<input  type="search" class="form-control form-control-sm txt_name" placeholder="" aria-controls="myTable">
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <table id="myTable2" class="table table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
@@ -853,7 +887,24 @@
                                         <!-- table html -->
                                         <div class="table-responsive m-t-40">
                                                 <div id="myTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                    
+                                                        <div class="row">
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div class="dataTables_length" id="myTable_length">
+                                                                        <label>Show <select name="myTable_length" aria-controls="myTable" class="form-control form-control-sm">
+                                                                            <option value="10">10</option>
+                                                                            <option value="25">25</option>
+                                                                            <option value="50">50</option>
+                                                                            <option value="100">100</option>
+                                                                        </select> entries</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-6">
+                                                                    <div id="myTable_filter" class="dataTables_filter">
+                                                                        <label>Search:<input type="search" class="form-control form-control-sm txt_name" placeholder="" aria-controls="myTable">
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <table id="myTable3" class="table table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
@@ -1065,7 +1116,7 @@
                  return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);             
                 });
             var client = {
-                client_id: $(uuid).val(),
+                client_id: uuid,
                 name:$("#name").val(),
                 family_name:$("#family_name").val(),
                 date:$("#date").val(),
@@ -1098,8 +1149,9 @@
                  dt = Math.floor(dt / 16);                 
                  return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);             
                 });
+                console.log("uuid ", uuid)
             var client = {
-                doctor_id: $(uuid).val(),
+                doctor_id: uuid,
                 name:$("#name").val(),
                 family_name:$("#family_name").val(),
                 medic:$("#medic").val(),
@@ -1126,6 +1178,29 @@
             });
         }
     </script>
+    <script>
+            $('.txt_name').keyup(function(){
+                // Search Text
+                var search = $(this).val();
+
+                // Hide all table tbody rows
+                $('table tbody tr').hide();
+
+                // Count total search result
+                var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
+
+                if(len > 0){
+                // Searching text in columns and show match row
+                $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+                    $(this).closest('tr').show();
+                });
+                }else{
+                $('.notfound').show();
+                }
+
+             });
+  
+        </script>
 </body>
 
 </html>
