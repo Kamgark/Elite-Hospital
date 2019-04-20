@@ -25,6 +25,7 @@
 </head>
 
 <body class="skin-megna fixed-layout">
+        
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -259,8 +260,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Nombre:</label>
-                                                    <div class="col-md-9">
-                                                        <!-- <p class="form-control-static"> </p> -->
+                                                    <div class="col-md-9 " >
+                                                        <!-- <p class="form-control-static" > </p> -->
                                                         <input class="form-control" type="text" value="" id="fname">
                                                     </div>
                                                 </div>
@@ -270,7 +271,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Apellido:</label>
                                                     <div class="col-md-9">
-                                                        <!-- <p class="form-control-static"></p> -->
+                                                        <!-- <p class="form-control-static" ></p> -->
                                                         <input class="form-control" type="text" value="" id="lname">
                                                     </div>
                                                 </div>
@@ -283,7 +284,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Sexo:</label>
                                                     <div class="col-md-9">
-                                                        <!-- <p class="form-control-static"></p> -->
+                                                        <!-- <p class="form-control-static" ></p> -->
                                                         <input class="form-control" type="text" value="" id="gender">
                                                     </div>
                                                 </div>
@@ -293,7 +294,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Diagnostico:</label>
                                                     <div class="col-md-9">
-                                                        <input class="form-control" type="text" value="" id="example-text-input">
+                                                        <input class="form-control" type="text" value="" id="diagnos">
                                                     </div>
                                                 </div>
                                             </div>
@@ -304,8 +305,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Doctor:</label>
-                                                    <div class="col-md-9">
-                                                        <!-- <p class="form-control-static"> </p> -->
+                                                    <div class="col-md-9" >
+                                                        <!-- <p class="form-control-static" > </p> -->
                                                         <input class="form-control" type="text" value="" id="doctor">
                                                     </div>
                                                 </div>
@@ -315,7 +316,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Edad:</label>
                                                     <div class="col-md-9">
-                                                        <!-- <p class="form-control-static"> </p> -->
+                                                        <!-- <p class="form-control-static" id="age"> </p> -->
                                                         <input class="form-control" type="number" value="" id="age">
                                                     </div>
                                                 </div>
@@ -329,7 +330,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">almacenar:</label>
                                                     <div class="col-md-9">
-                                                        <!-- <p class="form-control-static"> </p> -->
+                                                        <!-- <p class="form-control-static" > </p> -->
                                                         <input class="form-control" type="text" value="" id="store">
                                                     </div>
                                                 </div>
@@ -337,8 +338,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Servicio:</label>
-                                                    <div class="col-md-9">
-                                                        <!-- <p class="form-control-static"> </p> -->
+                                                    <div class="col-md-9" >
+                                                        <!-- <p class="form-control-static" > </p> -->
                                                         <input class="form-control" type="text" value="" id="service">
                                                     </div>
                                                 </div>
@@ -364,8 +365,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Precio:</label>
-                                                    <div class="col-md-9">
-                                                        <!-- <p class="form-control-static"> </p> -->
+                                                    <div class="col-md-9" >
+                                                        <!-- <p class="form-control-static" > </p> -->
                                                         <input class="form-control" type="" value="" id="price">
                                                     </div>
                                                 </div>
@@ -391,12 +392,16 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Descuento:</label>
-                                                    <div class="col-md-9">
-                                                        <!-- <p class="form-control-static"> </p> -->
-                                                        <input class="form-control" type="number" value="" id="Discount ">
+                                                    <div class="col-md-9" >
+                                                        <!-- <p class="form-control-static" > </p> -->
+                                                        <input class="form-control" type="number" value="" id="Discount">
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <hr class="m-t-0 m-b-20">
+                                        <div class="row d-flex justify-content-center">
+                                                <div  class="btn btn-info " onclick="submit()"> Submit</div>
                                         </div>
                                     </div>
                                 </form>
@@ -1057,10 +1062,70 @@
     <script src="../assets/node_modules/peity/jquery.peity.init.js"></script>
     <script src="dist/js/dashboard1.js"></script>
     <script>
+        var clientdata=[];
+        var doctordata=[];
+        var client=[];
+        var doc=[];
+        var services=[];
+        var servicedata=[];
+        var formdata={
+            "clientname":"",
+            "familyname":"",
+            "client_email":"",
+            "gender":"",
+            "age":"",
+            "doctorname":"",
+            "doctor_id":"",
+            "doctor_email":"",
+            "store":"",
+            "service":"",
+            "service_id":""
+        }
+        function submit(){
+            
+             var dt = new Date().getTime();
+             var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                 var r = (dt + Math.random() * 16) % 16 | 0;                 
+                 dt = Math.floor(dt / 16);                 
+                 return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);             
+                });
+            var submitform = {
+                order_id: uuid,
+                "name":formdata["clientname"],
+                "family_name":formdata["familyname"],
+                "doctor_name":formdata["doctorname"],
+                "doctor_id":formdata["doctor_id"],
+                "service_name":formdata["service"],
+                "service_id":formdata["service_id"],
+                "age":formdata["age"],
+                "diagnostic":$("#diagnos").val(),
+                "due_payment":$("#Discount").val(),
+                "gender":formdata["gender"],
+                "payment_method":$("#wayToPay").val(),
+                "doctor_email":formdata["doctor_email"],
+                "client_email":formdata["client_email"],
+                "status":$("#status").val(),
+                "store":formdata["store"],
+                "price":$("#price").val()
+            }
+            console.log('submitform', submitform);
+            $('#target').html('sending..');
+    
+            $.ajax({
+                url: 'https://arvixe3616.execute-api.us-east-1.amazonaws.com/dev_0/',
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    $('#target').html(data.msg);
+                },
+                data: submitform
+            });
+        }
         $.getJSON("https://bwlf2cpbd4.execute-api.us-east-1.amazonaws.com/dev_0/", function(data){
             var items = [];
             $.each(data, function(key, val){
-                items.push("<tr>");
+                client.push(val);
+                items.push("<tr onclick='hello("+key+", client)'>");
                     items.push("<td id=''"+key+"''>"+val.name+"</td>");
                     items.push("<td id=''"+key+"''>"+val.family_name+"</td>");
                     items.push("<td id=''"+key+"''>"+val.date+"</td>");
@@ -1070,10 +1135,55 @@
             });
             $("<tbody/>", {html: items.join("")}).appendTo("#myTable");
         })
+        function hello(key,cat){
+            switch(key,cat){
+                case client:  clientdata.push(client[key]);
+                                formdata["clientname"]=client[key]["name"];
+                                formdata["familyname"]=client[key]["family_name"];
+                                formdata["gender"]=client[key]["gender"];
+                                formdata["client_email"]=client[key]["email"];
+                                var DOB=client[key]["date"]
+                                var age=getAge(DOB);
+                                function getAge(DOB) {
+                                    console.log("DOB ",DOB);
+                                    var today = new Date();
+                                    var birthDate = new Date(DOB);
+                                    var age = today.getFullYear() - birthDate.getFullYear();
+                                    var m = today.getMonth() - birthDate.getMonth();
+                                    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                                        age = age - 1;
+                                    }
+
+                                    return age;
+                                }
+                                formdata["age"]=age;
+                                $("#fname").val(formdata["clientname"])
+                                $("#lname").val(formdata["familyname"])
+                                $("#gender").val(formdata["gender"])
+                                $("#age").val(formdata["age"])
+                                break;
+                case doctor:  doctordata.push(doc[key]);
+                                formdata["doctorname"]=doc[key]["name"];
+                                formdata["store"]=doc[key]["medic"];
+                                formdata["doctor_id"]=doc[key]["doctor_id"];
+                                formdata["doctor_email"]=doc[key]["email"];
+                                $("#doctor").val(formdata["doctorname"])
+                                $("#store").val(formdata["store"])
+                                break;
+                case service:  servicedata.push(services[key]);
+                                formdata["service"]=services[key]["name"];
+                                formdata["service_id"]=services[key]["service_id"];
+                                $("#service").val(formdata["service"])
+                                break;
+            }   
+            
+        }
+        
         $.getJSON("https://ug4lc0jiwg.execute-api.us-east-1.amazonaws.com/dev_0 ", function(data){
             var items = [];
             $.each(data, function(key, val){
-                items.push("<tr>");
+                doc.push(val);
+                items.push("<tr onclick='hello("+key+", doctor)'>");
                     items.push("<td id=''"+key+"''>"+val.name+"</td>");
                     items.push("<td id=''"+key+"''>"+val.family_name+"</td>");
                     items.push("<td id=''"+key+"''>"+val.medic+"</td>");
@@ -1099,7 +1209,8 @@
         $.getJSON("https://rufyedk586.execute-api.us-east-1.amazonaws.com/dev_0/ ", function(data){
             var items = [];
             $.each(data, function(key, val){
-                items.push("<tr>");
+                services.push(val);
+                items.push("<tr onclick='hello("+key+", service)'>");
                     items.push("<td id=''"+key+"''>"+val.name+"</td>");
                     items.push("<td id=''"+key+"''>"+val.price+"</td>");
                 items.push("</tr>");
