@@ -22,6 +22,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .rotate{
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 
 <body class="skin-megna fixed-layout">
@@ -279,7 +284,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Apellido: activate to sort column ascending" style="width: 98px;">Time</th>
                                                     <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Nombre: activate to sort column ascending" style="width: 69px;">Nombre</th>
                                                     <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Apellido: activate to sort column ascending" style="width: 81px;">Apellido</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Store: activate to sort column ascending" style="width: 183px;">Store</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Store: activate to sort column ascending" style="width: 183px;"  onclick="sortTable(4)">Store <i class="fa fa-angle-down"></i></th>
                                                     <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="service_name: activate to sort column ascending" style="width: 183px;">Service Name</th>
                                                     <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="price: activate to sort column ascending" style="width: 183px;">Price</th>
                                                 </tr>
@@ -463,7 +468,64 @@
                 }
 
              });
-  
+             
+             function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+               
+                    $(".fa-angle-down").toggleClass("rotate")
+               
+                table = document.getElementById("myTable");
+                switching = true;
+                // Set the sorting direction to ascending:
+                dir = "asc"; 
+                /* Make a loop that will continue until
+                no switching has been done: */
+                while (switching) {
+                        // Start by saying: no switching is done:
+                        switching = false;
+                        rows = table.rows;
+                        /* Loop through all table rows (except the
+                        first, which contains table headers): */
+                        for (i = 1; i < (rows.length - 1); i++) {
+                        // Start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /* Get the two elements you want to compare,
+                        one from current row and one from the next: */
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        /* Check if the two rows should switch place,
+                        based on the direction, asc or desc: */
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            // If so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            // If so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                            }
+                        }
+                        }
+                        if (shouldSwitch) {
+                        /* If a switch has been marked, make the switch
+                        and mark that a switch has been done: */
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        // Each time a switch is done, increase this count by 1:
+                        switchcount ++; 
+                        } else {
+                        /* If no switching has been done AND the direction is "asc",
+                        set the direction to "desc" and run the while loop again. */
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                        }
+                    }
+                }
         </script>
 </body>
 

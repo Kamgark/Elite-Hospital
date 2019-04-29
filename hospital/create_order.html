@@ -450,7 +450,7 @@
                                                             <tr role="row">
                                                                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Nombre: activate to sort column ascending" style="width: 57px;">Nombre</th>
                                                                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Apellido: activate to sort column ascending" style="width: 98px;">Apellido</th>
-                                                                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Fecha: activate to sort column ascending" style="width: 69px;">Fecha</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Fecha: activate to sort column ascending" style="width: 69px;" >Fecha</th>
                                                                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Telefono: activate to sort column ascending" style="width: 81px;">Telefono</th>
                                                                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 183px;">Email</th>
                                                             </tr>
@@ -655,7 +655,7 @@
                                                                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Apellido: activate to sort column ascending" style="width: 98px;">Apellido</th>
                                                                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Fecha: activate to sort column ascending" style="width: 69px;">Medic</th>
                                                                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Telefono: activate to sort column ascending" style="width: 81px;">Telefono</th>
-                                                                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 183px;">Email</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 183px;" >Email</th>
                                                             </tr>
                                                         </thead>
                                                     </table>
@@ -1112,14 +1112,17 @@
             $('#target').html('sending..');
     
             $.ajax({
+                
                 url: 'https://arvixe3616.execute-api.us-east-1.amazonaws.com/dev_0/',
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
+                
                     $('#target').html(data.msg);
                 },
                 data: submitform
             });
+            
         }
         $.getJSON("https://bwlf2cpbd4.execute-api.us-east-1.amazonaws.com/dev_0/", function(data){
             var items = [];
@@ -1240,7 +1243,6 @@
                 phone:$("#phone").val(),
                 email:$("#email").val()
             }
-            console.log('client', client);
             $('#target').html('sending..');
     
             $.ajax({
@@ -1248,6 +1250,7 @@
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
+                    
                     $('#target').html(data.msg);
                 },
                 data: client
@@ -1310,7 +1313,7 @@
                 }
 
              });
-  
+
         </script>
 </body>
 
