@@ -2,14 +2,15 @@
 var request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://0whknuyu69.execute-api.us-east-1.amazonaws.com/dev_0', true);
+request.open('GET', 'https://arvixe3616.execute-api.us-east-1.amazonaws.com/dev_0/', true);
 
 //initialize all the form parameters
-var name = document.getElementById("name");
+var product = document.getElementById("product");
 var provider = document.getElementById("provider");
-var store = document.getElementById("store");
+var type = document.getElementById("type");
 var quantity = document.getElementById("quantity");
 var unit = document.getElementById("unit");
+var price = document.getElementById("price");
 
 
 var mname = document.getElementById("mname");
@@ -33,7 +34,7 @@ delete_button.addEventListener("click", function () { mydelete(this.value); });
 var edit_button = document.getElementById("edit");
 edit_button.addEventListener("click", function () { myedit(this.value); });
 
-// Add Button
+//Add Button
 var add_button = document.getElementById("add");
 add_button.addEventListener("click", function () { myadd(); });
 
@@ -41,27 +42,29 @@ add_button.addEventListener("click", function () { myadd(); });
 var cancel1_button = document.getElementById("cancel1");
 cancel1_button.addEventListener("click", function () { mycancel1(this.value); });
 
-// Cancel Buttn
+//Cancel Buttn
 var cancel2_button = document.getElementById("cancel2");
 cancel2_button.addEventListener("click", function () { mycancel2(this.value); });
 
 
 
 function myedit(s) {
-    console.log(s)
     // Create a request variable and assign a new XMLHttpRequest object to it.
     var request3 = new XMLHttpRequest();
-    
+
     // Open a new connection, using the GET request on the URL endpoint
-    request3.open('GET', 'https://0whknuyu69.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1='+ s, true);
-     
+    request3.open('GET', 'https://arvixe3616.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1=' + s, true);
+
     request3.onload = function () {
         arr = JSON.parse(this.response);
-        document.getElementById("name").value = arr.name;
+
+
+        document.getElementById("product").value = arr.name;
         provider.value = arr.provider;
-        store.value = arr.store;
+        type.value = arr.type;
         quantity.value = arr.quantity;
         unit.value = arr.unit;
+        price.value = arr.price;
 
 
         $('#verticalcenter').modal('hide');
@@ -77,24 +80,25 @@ function mycancel1(s) {
 
 function mycancel2(s) {
 
-    document.getElementById("name").value = "";
+    document.getElementById("product").value = "";
     //console.log(document.getElementById("name").value);
     provider.value = "";
-    store.value = "";
+    type.value = "";
     quantity.value = "";
     unit.value = "";
+    price.value = "";
 }
 
 function mydelete(s) {
     var arr2 = {};
-    arr2.id_log = s;
+    arr2.product_id = s;
     var json = JSON.stringify(arr2);
     //alert(json);
     // Create a request variable and assign a new XMLHttpRequest object to it.
     var request2 = new XMLHttpRequest();
 
     // Open a new connection, using the GET request on the URL endpoint
-    request2.open('DELETE', 'https://0whknuyu69.execute-api.us-east-1.amazonaws.com/dev_0/', true);
+    request2.open('DELETE', 'https://arvixe3616.execute-api.us-east-1.amazonaws.com/dev_0/', true);
     request2.onload = function () {
         // Do something with the retrieved data ( found in xmlhttp.response )
         if (edit_button.value == "") {
@@ -111,11 +115,11 @@ function mydelete(s) {
     request2.send(json);
 }
 
-// Add Doctor to db method
+//Add Doctor to db method
 function myadd() {
 
     //Validation Form
-    if (document.getElementById("name").value == "" || provider.value == "" || quantity.value == "" || store.value == "" || unit.value == "Selecciona un Opcion") {
+    if (document.getElementById("product").value == "" || provider.value == "" || price.value == "" || quantity.value == "" || type.value == "" || unit.value == "Selecciona un Opcion") {
 
         //Initialize tags
         tag[0].style.color = "black";
@@ -142,7 +146,7 @@ function myadd() {
         }
 
         //Change or complete the following input field
-        if (document.getElementById("name").value == "") {
+        if (document.getElementById("product").value == "") {
             tag[0].style.color = "red";
             tag[0].style.fontWeight = 'bold';
         }
@@ -152,7 +156,7 @@ function myadd() {
             tag[1].style.fontWeight = 'bold';
         }
 
-        if (store.value == "") {
+        if (type.value == "") {
             tag[2].style.color = "red";
             tag[2].style.fontWeight = 'bold';
         }
@@ -167,6 +171,11 @@ function myadd() {
             tag[4].style.fontWeight = 'bold';
         }
 
+        if (price.value == "") {
+            tag[5].style.color = "red";
+            tag[5].style.fontWeight = 'bold';
+        }
+
     }
 
     //When there is no error call this else
@@ -176,22 +185,23 @@ function myadd() {
         var arr = {};
 
         if (edit_button.value != "") {
-            arr.id_log = edit_button.value;
+            arr.product_id = edit_button.value;
         }
         else {
             //uuid
-            arr["id_log"] = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            arr["product_id"] = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                 var r = (dt + Math.random() * 16) % 16 | 0;
                 dt = Math.floor(dt / 16);
                 return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
             });
         }
 
-        arr.name = document.getElementById("name").value;
+        arr.name = document.getElementById("product").value;
         arr.provider = provider.value;
-        arr.store = type.value;
+        arr.type = type.value;
         arr.quantity = quantity.value;
         arr.unit = unit.value;
+        arr.price = price.value;
 
 
 
@@ -200,7 +210,7 @@ function myadd() {
         console.log(json);
         //Make REST Api call
         var request = new XMLHttpRequest();
-        request.open('POST', 'https://0whknuyu69.execute-api.us-east-1.amazonaws.com/dev_0/', true);
+        request.open('POST', 'https://arvixe3616.execute-api.us-east-1.amazonaws.com/dev_0/', true);
         request.send(json);
 
         //Reload Document
@@ -213,10 +223,11 @@ function myadd() {
 function edit_delete_modal(data) {
 
     //Modal Information Config
-    mname.textContent = data[4];
-    mstore.innerHTML = "<address>" + data[3] + "</address>";
-    munit.textContent = data[7];
-    mquantity.textContent = data[6];
+    mname.textContent = data[1];
+    mprovider.innerHTML = data[2];
+    mtype.innerHTML = "<address>" + data[3] + "</address>";
+    mqu.textContent = data[4] + " " + data[5];
+    mprice.textContent = data[6];
 
     //Start Modal
     $('#verticalcenter').modal();
@@ -224,7 +235,6 @@ function edit_delete_modal(data) {
 
 request.onload = function () {
     // Begin accessing JSON data here
-
     //Access the Respone
     var arr = JSON.parse(this.response);
 
@@ -246,14 +256,25 @@ request.onload = function () {
 
             //Add Row
             table.row.add([
-                arr[i].id_log,
+                arr[i].age,
+                arr[i].client_email,
                 arr[i].date,
-                arr[i].time,
-                arr[i].store,
+                arr[i].diagnostic,
+                arr[i].discount,
+                arr[i].doctor_email,
+                arr[i].doctor_name,
+                arr[i].due_payment,
+                arr[i].family_name,
+                arr[i].gender,
                 arr[i].name,
-                arr[i].provider,
-                arr[i].quantity,
-                arr[i].unit
+                arr[i].order_id,
+                arr[i].payment_method,
+                arr[i].price,
+                arr[i].service_name,
+                arr[i].status,
+                arr[i].store,
+                arr[i].time,
+                arr[i].total
             ]).draw(false);
         }
 
@@ -278,13 +299,4 @@ request.onload = function () {
 
 // Send request
 request.send();
-
-
-
-
-
-
-
-
-
 

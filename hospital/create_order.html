@@ -1243,7 +1243,10 @@
                 phone:$("#phone").val(),
                 email:$("#email").val()
             }
-            $('#target').html('sending..');
+            var clientjson=JSON.stringify(client)
+            console.log(client)
+            console.log(clientjson)
+            $('#h5').html('sending..');
     
             $.ajax({
                 url: 'https://bwlf2cpbd4.execute-api.us-east-1.amazonaws.com/dev_0/',
@@ -1251,9 +1254,9 @@
                 dataType: 'json',
                 success: function (data) {
                     
-                    $('#target').html(data.msg);
+                    $('#h5').html(data);
                 },
-                data: client
+                data: clientjson
             });
         }
         function postDoctor() {
