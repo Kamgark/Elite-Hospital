@@ -7,7 +7,7 @@ Morris.Area({
             period: '2010',
             OPD: 0,
             ICU: 0,
-            
+             
         }, {
             period: '2011',
             OPD: 130,
