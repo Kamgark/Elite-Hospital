@@ -91,7 +91,7 @@ function mycancel2(s) {
 
 function mydelete(s) {
     var arr2 = {};
-    arr2.product_id = s;
+    arr2.order_id = s;
     var json = JSON.stringify(arr2);
     //alert(json);
     // Create a request variable and assign a new XMLHttpRequest object to it.
@@ -223,7 +223,7 @@ function myadd() {
 function edit_delete_modal(data) {
 
     //Modal Information Config
-    mname.textContent = data[1];
+    mname.textContent = data[1]; 
     mprovider.innerHTML = data[2];
     mtype.innerHTML = "<address>" + data[3] + "</address>";
     mqu.textContent = data[4] + " " + data[5];
@@ -256,7 +256,7 @@ request.onload = function () {
 
             //Add Row
             table.row.add([
-                arr[i].age,
+                arr[i].order_id,
                 arr[i].client_email,
                 arr[i].date,
                 arr[i].diagnostic,
@@ -267,7 +267,7 @@ request.onload = function () {
                 arr[i].family_name,
                 arr[i].gender,
                 arr[i].name,
-                arr[i].order_id,
+                arr[i].age,
                 arr[i].payment_method,
                 arr[i].price,
                 arr[i].service_name,

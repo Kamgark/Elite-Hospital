@@ -2,7 +2,7 @@
 var request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://f05q1or3v6.execute-api.us-east-1.amazonaws.com/dev_0/', true);
+request.open('GET', 'https://7ly68131u9.execute-api.us-east-1.amazonaws.com/dev_0/', true);
 
 //initialize all the form parameters
 var product = document.getElementById("product");
@@ -53,7 +53,7 @@ function myedit(s) {
     var request3 = new XMLHttpRequest();
 
     // Open a new connection, using the GET request on the URL endpoint
-    request3.open('GET', 'https://f05q1or3v6.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1=' + s, true);
+    request3.open('GET', 'https://7ly68131u9.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1=' + s, true);
 
     request3.onload = function () {
         arr = JSON.parse(this.response);
@@ -98,7 +98,7 @@ function mydelete(s) {
     var request2 = new XMLHttpRequest();
 
     // Open a new connection, using the GET request on the URL endpoint
-    request2.open('DELETE', 'https://f05q1or3v6.execute-api.us-east-1.amazonaws.com/dev_0/', true);
+    request2.open('DELETE', 'https://7ly68131u9.execute-api.us-east-1.amazonaws.com/dev_0/', true);
     request2.onload = function () {
         // Do something with the retrieved data ( found in xmlhttp.response )
         if (edit_button.value == "") {
@@ -257,13 +257,13 @@ request.onload = function () {
 
             //Add Row
             table.row.add([
-                arr[i].product_id,
+                arr[i].inv_id,
                 arr[i].name,
                 arr[i].provider,
-                arr[i].type,
                 arr[i].quantity,
                 arr[i].unit,
-                arr[i].price
+                arr[i].date,
+                arr[i].time
             ]).draw(false);
         }
 
@@ -276,25 +276,11 @@ request.onload = function () {
             //Initialize both buttons for further use
             // edit_button.value = data[0];
             delete_button.value = data[0];
-
             //Call Function to start process
             edit_delete_modal(data);
         });
-
         table.column(0).visible(false);
-
     });
 }
-
 // Send request
 request.send();
-
-
-
-
-
-
-
-
-
-

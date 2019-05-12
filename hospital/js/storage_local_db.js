@@ -2,7 +2,7 @@
 var request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://7ly68131u9.execute-api.us-east-1.amazonaws.com/dev_0/', true);
+request.open('GET', 'https://buvqrkxz5a.execute-api.us-east-1.amazonaws.com/dev_0/', true);
 
 //initialize all the form parameters
 var product = document.getElementById("product");
@@ -49,7 +49,7 @@ function myedit(s) {
     var request3 = new XMLHttpRequest();
 
     // Open a new connection, using the GET request on the URL endpoint
-    request3.open('GET', 'https://7ly68131u9.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1=' + s, true);
+    request3.open('GET', 'https://buvqrkxz5a.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1=' + s, true);
 
     request3.onload = function () {
         arr = JSON.parse(this.response);
@@ -94,7 +94,7 @@ function mydelete1(s) {
     var request2 = new XMLHttpRequest();
 
     // Open a new connection, using the GET request on the URL endpoint
-    request2.open('DELETE', 'https://7ly68131u9.execute-api.us-east-1.amazonaws.com/dev_0/', true);
+    request2.open('DELETE', 'https://buvqrkxz5a.execute-api.us-east-1.amazonaws.com/dev_0/', true);
     request2.onload = function () {
         // Do something with the retrieved data ( found in xmlhttp.response )
         // if (edit_button.value == "") {
@@ -206,7 +206,7 @@ function mydelete1(s) {
 //         console.log(json);
 //         //Make REST Api call
 //         var request = new XMLHttpRequest();
-//         request.open('POST', 'https://7ly68131u9.execute-api.us-east-1.amazonaws.com/dev_0/', true);
+//         request.open('POST', 'https://buvqrkxz5a.execute-api.us-east-1.amazonaws.com/dev_0/', true);
 //         request.send(json);
 
 //         //Reload Document
@@ -254,6 +254,7 @@ request.onload = function () {
             //Add Row
             table.row.add([
                 arr[i].inv_id,
+                arr[i].store,
                 arr[i].name,
                 arr[i].provider,
                 arr[i].quantity,
@@ -265,7 +266,6 @@ request.onload = function () {
 
         // On select metod start process
         $('#myTable1 tbody').on('click', 'tr', function () {
-
             //Get the data On the Table
             var data = table.row(this).data();
 
@@ -275,11 +275,8 @@ request.onload = function () {
             //Call Function to start process
             edit_delete_modal1(data);
         });
-
         table.column(0).visible(false);
-
     });
 }
-
 // Send request
 request.send();
