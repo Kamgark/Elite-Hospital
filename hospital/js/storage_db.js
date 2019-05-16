@@ -222,8 +222,8 @@ function edit_delete_modal1(data) {
     m1name.textContent = data[1];
     // mprovider.innerHTML = data[2];
     m1type.innerHTML = "<address>" + data[3] + "</address>";
-    m1qu.textContent = data[4] + " " + data[5];
-    m1price.textContent = data[6];
+    m1qu.textContent = data[4];
+    m1price.textContent = data[5];
 
     //Start Modal
     $('#verticalright').modal();

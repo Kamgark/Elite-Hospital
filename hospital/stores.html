@@ -310,13 +310,15 @@
                                         <h4 id="mname">Nombre del Doctor</h4>
                                         <small id="mprovider">Especialidad - licencia</small>
                                         <p id="mtype">Direccion del doctor, calle, ciudad, estado, pais, codigo postal</p>
-                                        <input id="mqu" type="number" placeholder="Enter quantity">
+                                        <p id="mqu"></p>
+                                        <input id="mquorder" type="number" placeholder="Enter quantity">
                                         <p id="munit">ml</p>
                                         <h6 id="mprice">Email: doctor@email.com</h6>
+                                        <p id="error" style="color: red"></p>
                                     </div>
                                     <div class="modal-footer">
                                         <button id="add1" type="button" class="btn btn-outline-info btn-rounded" ><i class="ti-save"></i> Agregar</button>
-                                        <button id="delete" type="button" class="btn btn-outline-danger btn-rounded"><i class="ti-trash"></i> Borrar</button>
+                                        <!-- <button id="delete" type="button" class="btn btn-outline-danger btn-rounded"><i class="ti-trash"></i> Borrar</button> -->
                                         <button id="cancel1" type="button" class="btn btn-inverse waves-effect waves-light" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
@@ -510,6 +512,6 @@
     <!-- List of doctors from AWS -->
     <script src="js/storage_db.js"></script>
     <script src="js/providers_db2.js"></script>
-</body>
+</body> 
 
 </html>

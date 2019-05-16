@@ -23,12 +23,19 @@ var tag = document.getElementsByTagName("label");
 var input
 var i = 0
 var dt = new Date().getTime();
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+today = mm + '/' + dd + '/' + yyyy;
 
 //Initialize all buttons
 
 //Delete Button
-var delete_button = document.getElementById("delete");
-delete_button.addEventListener("click", function () { mydelete(this.value); });
+// var delete_button = document.getElementById("delete");
+// delete_button.addEventListener("click", function () { mydelete(this.value); });
 
 //Edit Button
 // var edit_button = document.getElementById("edit");
@@ -119,63 +126,9 @@ function mydelete(s) {
 function myadd() {
 
     //Validation Form
-    if (document.getElementById("mname").value == "" || mprovider.value == "" || mqu.value == "" || mtype.value == "" || mprice.value == "Selecciona un Opcion") {
-
-        //Initialize tags
-        tag[0].style.color = "black";
-        tag[0].style.fontWeight = 'normal';
-        tag[1].style.color = "black";
-        tag[1].style.fontWeight = 'normal';
-        tag[2].style.color = "black";
-        tag[2].style.fontWeight = 'normal';
-        tag[3].style.color = "black";
-        tag[3].style.fontWeight = 'normal';
-        tag[4].style.color = "black";
-        tag[4].style.fontWeight = 'normal';
-        tag[5].style.color = "black";
-        tag[5].style.fontWeight = 'normal';
-
-        //Complete form Message
-        if (i == 0) {
-            var label = document.createElement("label");
-            var h5 = document.getElementById("h5");
-            label.innerHTML = "*Porfavor de completar los espacios marcados en rojo"
-            label.style.color = "red";
-            h5.appendChild(label);
-            i++;
-        }
-
-        //Change or complete the following input field
-        if (document.getElementById("product").value == "") {
-            tag[0].style.color = "red";
-            tag[0].style.fontWeight = 'bold';
-        }
-
-        if (provider.value == "") {
-            tag[1].style.color = "red";
-            tag[1].style.fontWeight = 'bold';
-        }
-
-        if (type.value == "") {
-            tag[2].style.color = "red";
-            tag[2].style.fontWeight = 'bold';
-        }
-
-        if (quantity.value == "") {
-            tag[3].style.color = "red";
-            tag[3].style.fontWeight = 'bold';
-        }
-
-        if (unit.value == "") {
-            tag[4].style.color = "red";
-            tag[4].style.fontWeight = 'bold';
-        }
-
-        if (price.value == "") {
-            tag[5].style.color = "red";
-            tag[5].style.fontWeight = 'bold';
-        }
-
+     //Validation Form
+     if (document.getElementById("mquorder").value == "" || document.getElementById("mquorder").value <= 0 ) {
+        error.innerHTML="*Input field must be filled correctly\n value must be greater than 0."
     }
 
     //When there is no error call this else
@@ -195,21 +148,23 @@ function myadd() {
                 return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
             });
         // }
-            
+        arr.store="sample";
         arr.name = mname.textContent;
         arr.provider = mprovider.innerHTML;
+        arr.quantity = mqu.textContent;
         arr.unit = munit.innerHTML;
-        arr.quantity = mqu.value;
+        arr.date = today;
+        arr.time = time;
         arr.price=mprice.textContent;
-        // arr.unit = unit.value;
-        // arr.price = price.value;
+        arr.q_ordered=mquorder.value;
+        arr.total=mprice.textContent*mquorder.value;
 
         //Prepare var to REST call api
         var json = JSON.stringify(arr);
         console.log(json);
         //Make REST Api call
         var request = new XMLHttpRequest();
-        request.open('POST', 'https://7ly68131u9.execute-api.us-east-1.amazonaws.com/dev_0/', true);
+        request.open('POST', 'https://buvqrkxz5a.execute-api.us-east-1.amazonaws.com/dev_0/', true);
         request.send(json);
 
         //Reload Document
@@ -224,9 +179,9 @@ function edit_delete_modal(data) {
     //Modal Information Config
     mname.textContent = data[1];
     mprovider.innerHTML = data[2];
-    mtype.innerHTML =data[3];
-    mqu.textContent = data[4] ;
-    munit.textContent= data[5];
+    mtype.innerHTML =data[5];
+    mqu.textContent = data[3] ;
+    munit.textContent= data[4];
     mprice.textContent = data[6];
 
     //Start Modal
@@ -275,7 +230,7 @@ request.onload = function () {
 
             //Initialize both buttons for further use
             // edit_button.value = data[0];
-            delete_button.value = data[0];
+            // delete_button.value = data[0];
             //Call Function to start process
             edit_delete_modal(data);
         });
