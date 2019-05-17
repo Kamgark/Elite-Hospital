@@ -30,8 +30,8 @@ var delete_button = document.getElementById("delete");
 delete_button.addEventListener("click", function () { mydelete(this.value); });
 
 //Edit Button
-var edit_button = document.getElementById("edit");
-edit_button.addEventListener("click", function () { myedit(this.value); });
+// var edit_button = document.getElementById("edit");
+// edit_button.addEventListener("click", function () { myedit(this.value); });
 
 // Add Button
 var add_button = document.getElementById("add");
@@ -71,7 +71,7 @@ function myedit(s) {
 }
 
 function mycancel1(s) {
-    edit_button.value = "";
+    // edit_button.value = "";
     delete_button.value = "";
 }
 
@@ -97,14 +97,14 @@ function mydelete(s) {
     request2.open('DELETE', 'https://0whknuyu69.execute-api.us-east-1.amazonaws.com/dev_0/', true);
     request2.onload = function () {
         // Do something with the retrieved data ( found in xmlhttp.response )
-        if (edit_button.value == "") {
-            edit_button.value = "";
-            delete_button.value = "";
-        } else {
-            edit_button.value = "";
+        // if (edit_button.value == "") {
+        //     edit_button.value = "";
+        //     delete_button.value = "";
+        // } else {
+            // edit_button.value = "";
             delete_button.value = "";
             document.location.reload();
-        }
+        // }
 
 
     };
@@ -175,17 +175,17 @@ function myadd() {
         //set all attributes
         var arr = {};
 
-        if (edit_button.value != "") {
-            arr.id_log = edit_button.value;
-        }
-        else {
+        // if (edit_button.value != "") {
+        //     arr.id_log = edit_button.value;
+        // }
+        // else {
             //uuid
             arr["id_log"] = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                 var r = (dt + Math.random() * 16) % 16 | 0;
                 dt = Math.floor(dt / 16);
                 return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
             });
-        }
+        // }
 
         arr.name = document.getElementById("name").value;
         arr.provider = provider.value;
@@ -264,7 +264,7 @@ request.onload = function () {
             var data = table.row(this).data();
 
             //Initialize both buttons for further use
-            edit_button.value = data[0];
+            // edit_button.value = data[0];
             delete_button.value = data[0];
 
             //Call Function to start process
