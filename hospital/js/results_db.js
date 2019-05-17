@@ -1,4 +1,4 @@
-// Create a request variable and assign a new XMLHttpRequest object to it.
+ // Create a request variable and assign a new XMLHttpRequest object to it.
 var request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
@@ -27,12 +27,12 @@ var dt = new Date().getTime();
 //Initialize all buttons
 
 //Delete Button
-var delete_button = document.getElementById("delete");
-delete_button.addEventListener("click", function () { mydelete(this.value); });
+// var delete_button = document.getElementById("delete");
+// delete_button.addEventListener("click", function () { mydelete(this.value); });
 
 //Edit Button
-// var edit_button = document.getElementById("edit");
-// edit_button.addEventListener("click", function () { myedit(this.value); });
+var edit_button = document.getElementById("edit");
+edit_button.addEventListener("click", function () { myedit(this.value); });
 
 //Add Button
 var add_button = document.getElementById("add");
@@ -74,8 +74,8 @@ function myedit(s) {
 }
 
 function mycancel1(s) {
-    // edit_button.value = "";
-    delete_button.value = "";
+    edit_button.value = "";
+    // delete_button.value = "";
 }
 
 function mycancel2(s) {
@@ -91,7 +91,7 @@ function mycancel2(s) {
 
 function mydelete(s) {
     var arr2 = {};
-    arr2.order_id = s;
+    arr2.product_id = s;
     var json = JSON.stringify(arr2);
     //alert(json);
     // Create a request variable and assign a new XMLHttpRequest object to it.
@@ -101,14 +101,14 @@ function mydelete(s) {
     request2.open('DELETE', 'https://arvixe3616.execute-api.us-east-1.amazonaws.com/dev_0/', true);
     request2.onload = function () {
         // Do something with the retrieved data ( found in xmlhttp.response )
-        // if (edit_button.value == "") {
-        //     edit_button.value = "";
-        //     delete_button.value = "";
-        // } else {
-            // edit_button.value = "";
-            delete_button.value = "";
+        if (edit_button.value == "") {
+            edit_button.value = "";
+            // delete_button.value = "";
+        } else {
+            edit_button.value = "";
+            // delete_button.value = "";
             document.location.reload();
-        // }
+        }
 
 
     };
@@ -184,17 +184,17 @@ function myadd() {
         //set all attributes
         var arr = {};
 
-        // if (edit_button.value != "") {
-        //     arr.product_id = edit_button.value;
-        // }
-        // else {
+        if (edit_button.value != "") {
+            arr.product_id = edit_button.value;
+        }
+        else {
             //uuid
             arr["product_id"] = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                 var r = (dt + Math.random() * 16) % 16 | 0;
                 dt = Math.floor(dt / 16);
                 return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
             });
-        // }
+        }
 
         arr.name = document.getElementById("product").value;
         arr.provider = provider.value;
@@ -223,7 +223,7 @@ function myadd() {
 function edit_delete_modal(data) {
 
     //Modal Information Config
-    mname.textContent = data[1]; 
+    mname.textContent = data[1];
     mprovider.innerHTML = data[2];
     mtype.innerHTML = "<address>" + data[3] + "</address>";
     mqu.textContent = data[4] + " " + data[5];
@@ -235,6 +235,7 @@ function edit_delete_modal(data) {
 
 request.onload = function () {
     // Begin accessing JSON data here
+
     //Access the Respone
     var arr = JSON.parse(this.response);
 
@@ -256,25 +257,21 @@ request.onload = function () {
 
             //Add Row
             table.row.add([
-                arr[i].order_id,
+                arr[i].result_id,
+                arr[i].age,
                 arr[i].client_email,
                 arr[i].date,
-                arr[i].diagnostic,
-                arr[i].discount,
                 arr[i].doctor_email,
                 arr[i].doctor_name,
                 arr[i].due_payment,
                 arr[i].family_name,
-                arr[i].gender,
                 arr[i].name,
-                arr[i].age,
-                arr[i].payment_method,
                 arr[i].price,
+                arr[i].result,
                 arr[i].service_name,
                 arr[i].status,
                 arr[i].store,
-                arr[i].time,
-                arr[i].total
+                arr[i].time
             ]).draw(false);
         }
 
@@ -285,8 +282,8 @@ request.onload = function () {
             var data = table.row(this).data();
 
             //Initialize both buttons for further use
-            // edit_button.value = data[0];
-            delete_button.value = data[0];
+            edit_button.value = data[0];
+            // delete_button.value = data[0];
 
             //Call Function to start process
             edit_delete_modal(data);
@@ -299,4 +296,13 @@ request.onload = function () {
 
 // Send request
 request.send();
+
+
+
+
+
+
+
+
+
 
