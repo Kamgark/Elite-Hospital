@@ -266,7 +266,7 @@ request.onload = function () {
                 arr[i].price
             ]).draw(false);
         }
-
+ 
         //On select metod start process
         $('#myTable tbody').on('click', 'tr', function () {
 
