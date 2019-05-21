@@ -63,26 +63,26 @@ cancel1_button.addEventListener("click", function () { mycancel1(this.value); })
 
 
 
-function myedit3(s) {
-    // Create a request variable and assign a new XMLHttpRequest object to it.
-    var request3 = new XMLHttpRequest();
+// function myedit3(s) {
+//     // Create a request variable and assign a new XMLHttpRequest object to it.
+//     var request3 = new XMLHttpRequest();
 
-    // Open a new connection, using the GET request on the URL endpoint
-    request3.open('GET', 'https://iermfbynl5.execute-api.us-east-1.amazonaws.com/dev_0/query?param1=' + s, true);
+//     // Open a new connection, using the GET request on the URL endpoint
+//     request3.open('GET', 'https://iermfbynl5.execute-api.us-east-1.amazonaws.com/dev_0/query?param1=' + s, true);
 
-    request3.onload = function () {
-        arr = JSON.parse(this.response);
-        //console.log(arr.name);
+//     request3.onload = function () {
+//         arr = JSON.parse(this.response);
+//         //console.log(arr.name);
 
 
-        document.getElementById("form-store").value = arr.name;
-        //console.log(document.getElementById("name").value);
+//         document.getElementById("form-store").value = arr.name;
+//         //console.log(document.getElementById("name").value);
 
-        $('#verticalcenter3').modal('hide');
-    }
-    // Send request
-    request3.send();
-}
+//         $('#verticalcenter3').modal('hide');
+//     }
+//     // Send request
+//     request3.send();
+// }
 
 // function mycancel1(s) {
 //     edit_button2.value = "";
@@ -275,15 +275,10 @@ function myform() {
 //Modal function
 function edit_delete_modal3(data) {
 
-    //Modal Information Config
-    storename.textContent = data[1];
-    storega.innerHTML = data[2];
-    storeaddress.innerHTML = data[3];
-    storephone.textContent = "T: " + data[5];
-    storeemail.textContent = "E: " + data[4];
+    document.getElementById("form-store").value = data[1];
 
     //Start Modal
-    $('#verticalcenter3').modal();
+    // $('#verticalcenter3').modal();
 }
 
 request.onload = function () {

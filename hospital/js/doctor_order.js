@@ -53,29 +53,27 @@ cancel2_button.addEventListener("click", function () { mycancel2(this.value); })
 
 
 
-function myedit(s) {
-    // Create a request variable and assign a new XMLHttpRequest object to it.
-    var request3 = new XMLHttpRequest();
+// function myedit(s) {
+//     // Create a request variable and assign a new XMLHttpRequest object to it.
+//     var request3 = new XMLHttpRequest();
 
-    // Open a new connection, using the GET request on the URL endpoint
-    request3.open('GET', 'https://ug4lc0jiwg.execute-api.us-east-1.amazonaws.com/dev_0/query?param1=' + s, true);
+//     // Open a new connection, using the GET request on the URL endpoint
+//     request3.open('GET', 'https://ug4lc0jiwg.execute-api.us-east-1.amazonaws.com/dev_0/query?param1=' + s, true);
 
-    request3.onload = function () {
-        arr = JSON.parse(this.response);
-        //console.log(arr.name);
+//     request3.onload = function () {
+//         arr = JSON.parse(this.response);
+//         //console.log(arr.name);
 
 
-        document.getElementById("form-doctor").value = arr.name;
-        //console.log(document.getElementById("name").value);
-        // document.getElementById("form-store").value = arr.medic;
-        document.getElementById("form-doctorId").value = arr.doctor_id;
-        document.getElementById("form-doctorEmail").value = arr.email;
+//         document.getElementById("form-doctor").value = arr.name;
+//         document.getElementById("form-doctorId").value = arr.doctor_id;
+//         document.getElementById("form-doctorEmail").value = arr.email;
 
-        $('#verticalcenter1').modal('hide');
-    }
-    // Send request
-    request3.send();
-}
+//         $('#verticalcenter1').modal('hide');
+//     }
+//     // Send request
+//     request3.send();
+// }
 
 function mycancel1(s) {
     edit_button1.value = "";
@@ -213,15 +211,12 @@ function myadd1() {
 //Modal function
 function edit_delete_modal1(data) {
 
-    //Modal Information Config
-    dname.textContent = data[1];
-    dmedic.innerHTML = data[2];
-    maddress.innerHTML = data[3];
-    dphone.textContent = "T: " + data[5];
-    demail.textContent = "E: " + data[4];
+    document.getElementById("form-doctor").value = data[1];
+    document.getElementById("form-doctorId").value = data[0];
+    document.getElementById("form-doctorEmail").value = data[4];
 
     //Start Modal
-    $('#verticalcenter1').modal();
+    // $('#verticalcenter1').modal();
 }
 
 request.onload = function () {

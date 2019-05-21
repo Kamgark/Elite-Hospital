@@ -54,43 +54,43 @@ cancel2_button.addEventListener("click", function () { mycancel2(this.value); })
 
 
 
-function addToform(s) {
-    // Create a request variable and assign a new XMLHttpRequest object to it.
-    var request3 = new XMLHttpRequest();
-    // console.log("id",s);
-    // Open a new connection, using the GET request on the URL endpoint
-    request3.open('GET', 'https://bwlf2cpbd4.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1=' + s, true);
+// function addToform(s) {
+//     // Create a request variable and assign a new XMLHttpRequest object to it.
+//     var request3 = new XMLHttpRequest();
+//     // console.log("id",s);
+//     // Open a new connection, using the GET request on the URL endpoint
+//     request3.open('GET', 'https://bwlf2cpbd4.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1=' + s, true);
 
-    request3.onload = function () {
-        arr = JSON.parse(this.response);
-        console.log(arr);
+//     request3.onload = function () {
+//         arr = JSON.parse(this.response);
+//         console.log(arr);
 
+ 
+//         document.getElementById("form-name").value = arr.name;
+//         //console.log(document.getElementById("name").value);
+//         document.getElementById("form-fname").value = arr.family_name;
+//         document.getElementById("form-gender").value = arr.gender;
+//         document.getElementById("form-clientEmail").value = arr.email;
+//         var DOB=arr.date;
+//         var age=getAge(DOB);
+//         function getAge(DOB) {
+//             // console.log("DOB ",DOB);
+//             var today = new Date();
+//             var birthDate = new Date(DOB);
+//             var age = today.getFullYear() - birthDate.getFullYear();
+//             var m = today.getMonth() - birthDate.getMonth();
+//             if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+//                 age = age - 1;
+//             }
 
-        document.getElementById("form-name").value = arr.name;
-        //console.log(document.getElementById("name").value);
-        document.getElementById("form-fname").value = arr.family_name;
-        document.getElementById("form-gender").value = arr.gender;
-        document.getElementById("form-clientEmail").value = arr.email;
-        var DOB=arr.date;
-        var age=getAge(DOB);
-        function getAge(DOB) {
-            // console.log("DOB ",DOB);
-            var today = new Date();
-            var birthDate = new Date(DOB);
-            var age = today.getFullYear() - birthDate.getFullYear();
-            var m = today.getMonth() - birthDate.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age = age - 1;
-            }
-
-            return age;
-        }
-        document.getElementById("form-age").value=age;
-        $('#verticalcenter').modal('hide');
-    }
-    // Send request
-    request3.send();
-}
+//             return age;
+//         }
+//         document.getElementById("form-age").value=age;
+//         $('#verticalcenter').modal('hide');
+//     }
+//     // Send request
+//     request3.send();
+// }
 
 function mycancel1(s) {
     edit_button.value = "";
@@ -229,15 +229,25 @@ function myadd() {
 //Modal function
 function edit_delete_modal(data) {
 
-    //Modal Information Config
-    mname.textContent = data[1] + " " + data[2];
-    mga.innerHTML = data[3];
-    // maddress.innerHTML = "<address>" + data[7] + "  " + data[8] + "  " + data[9] + "  " + data[10] + "  " + data[11] + "</address>";
-    mphone.textContent = "T: " + data[5];
-    memail.textContent = "E: " + data[4];
+        document.getElementById("form-name").value = data[1];
+        document.getElementById("form-fname").value = data[2];
+        document.getElementById("form-gender").value = data[6];
+        document.getElementById("form-clientEmail").value = data[4];
+        var DOB=data[3];
+        var age=getAge(DOB);
+        function getAge(DOB) {
+            // console.log("DOB ",DOB);
+            var today = new Date();
+            var birthDate = new Date(DOB);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age = age - 1;
+            }
 
-    //Start Modal
-    $('#verticalcenter').modal();
+            return age;
+        }
+        document.getElementById("form-age").value=age;
 }
 
 request.onload = function () {
@@ -269,7 +279,8 @@ request.onload = function () {
                 arr[i].family_name,
                 arr[i].date,
                 arr[i].email,
-                arr[i].phone
+                arr[i].phone,
+                arr[i].gender
             ]).draw(false);
         }
 
@@ -278,7 +289,6 @@ request.onload = function () {
 
             //Get the data On the Table
             var data = table.row(this).data();
-
             //Initialize both buttons for further use
             edit_button.value = data[0];
             // delete_button.value = data[0];

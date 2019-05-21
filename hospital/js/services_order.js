@@ -40,27 +40,27 @@ cancel4_button.addEventListener("click", function () { mycancel4(this.value); })
 
 
 
-function myedit4(s) {
-    // Create a request variable and assign a new XMLHttpRequest object to it.
-    var request3 = new XMLHttpRequest();
+// function myedit4(s) {
+//     // Create a request variable and assign a new XMLHttpRequest object to it.
+//     var request3 = new XMLHttpRequest();
 
-    // Open a new connection, using the GET request on the URL endpoint
-    request3.open('GET', 'https://rufyedk586.execute-api.us-east-1.amazonaws.com/dev_0/query?param1=' + s, true);
+//     // Open a new connection, using the GET request on the URL endpoint
+//     request3.open('GET', 'https://rufyedk586.execute-api.us-east-1.amazonaws.com/dev_0/query?param1=' + s, true);
 
-    request3.onload = function () {
-        arr = JSON.parse(this.response);
-        //console.log(arr.name);
+//     request3.onload = function () {
+//         arr = JSON.parse(this.response);
+//         //console.log(arr.name);
 
 
-        document.getElementById("form-services").value = arr.name;
-        document.getElementById("form-price").value = arr.price;
-        document.getElementById("form-serviceId").value = arr.service_id;
+//         document.getElementById("form-services").value = arr.name;
+//         document.getElementById("form-price").value = arr.price;
+//         document.getElementById("form-serviceId").value = arr.service_id;
 
-        $('#verticalcenter4').modal('hide');
-    }
-    // Send request
-    request3.send();
-}
+//         $('#verticalcenter4').modal('hide');
+//     }
+//     // Send request
+//     request3.send();
+// }
 
 function mycancel4(s) {
     edit_button4.value = "";
@@ -199,11 +199,12 @@ function mycancel4(s) {
 function edit_delete_modal4(data) {
 
     //Modal Information Config
-    sname.textContent = data[1];
-    sga.innerHTML = data[2];
+        document.getElementById("form-services").value = data[1];
+        document.getElementById("form-price").value = data[2];
+        document.getElementById("form-serviceId").value = data[0];
     
     //Start Modal
-    $('#verticalcenter4').modal();
+    // $('#verticalcenter4').modal();
 }
 
 request.onload = function () {
