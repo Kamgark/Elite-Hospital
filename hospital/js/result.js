@@ -14,16 +14,18 @@ var price = document.getElementById("price");
 
 
 var mname = document.getElementById("mname");
-var mprovider = document.getElementById("provider");
+var mprovider = document.getElementById("mprovider");
 var mtype = document.getElementById("mtype");
 var mqu = document.getElementById("mqu");
 var mprice = document.getElementById("mprice");
+var mstatus=document.getElementById("mstatus");
+var newpay=document.getElementById("newpay")
 
 var tag = document.getElementsByTagName("label");
 var input
 var i = 0
 var dt = new Date().getTime();
-
+var fulldata={}
 //Initialize all buttons
 
 //Delete Button
@@ -31,49 +33,52 @@ var delete_button = document.getElementById("delete");
 delete_button.addEventListener("click", function () { mydelete(this.value); });
 
 //Edit Button
-var edit_button = document.getElementById("edit");
-edit_button.addEventListener("click", function () { myedit(this.value); });
+// var edit_button = document.getElementById("edit");
+// edit_button.addEventListener("click", function () { myedit(this.value); });
 
 //Add Button
 var add_button = document.getElementById("add");
 add_button.addEventListener("click", function () { myadd(); });
+
+var upload_button = document.getElementById("upload");
+upload_button.addEventListener("click", function () { uploadFile(); });
 
 //Cancel Button
 var cancel1_button = document.getElementById("cancel1");
 cancel1_button.addEventListener("click", function () { mycancel1(this.value); });
 
 //Cancel Buttn
-var cancel2_button = document.getElementById("cancel2");
-cancel2_button.addEventListener("click", function () { mycancel2(this.value); });
+// var cancel2_button = document.getElementById("cancel2");
+// cancel2_button.addEventListener("click", function () { mycancel2(this.value); });
 
 
 
-function myedit(s) {
-    // Create a request variable and assign a new XMLHttpRequest object to it.
-    var request3 = new XMLHttpRequest();
+    // function myedit(s) {
+    //     // Create a request variable and assign a new XMLHttpRequest object to it.
+    //     var request3 = new XMLHttpRequest();
 
-    // Open a new connection, using the GET request on the URL endpoint
-    request3.open('GET', 'https://wk8zqmti4g.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1=' + s, true);
+    //     // Open a new connection, using the GET request on the URL endpoint
+    //     request3.open('GET', 'https://wk8zqmti4g.execute-api.us-east-1.amazonaws.com/dev_0/get-item?param1=' + s, true);
 
-    request3.onload = function () {
-        arr = JSON.parse(this.response);
+    //     request3.onload = function () {
+    //         arr = JSON.parse(this.response);
 
-        document.getElementById("product").value = arr.name;
-        provider.value = arr.family_name;
-        type.value = arr.store;
-        quantity.value = arr.quantity;
-        unit.value = arr.status;
-        price.value = arr.due_payment;
+    //         document.getElementById("product").value = arr.name;
+    //         provider.value = arr.family_name;
+    //         type.value = arr.store;
+    //         quantity.value = arr.quantity;
+    //         unit.value = arr.status;
+    //         price.value = arr.due_payment;
 
 
-        $('#verticalcenter').modal('hide');
-    }
-    // Send request
-    request3.send();
-}
+    //         $('#verticalcenter').modal('hide');
+    //     }
+    //     // Send request
+    //     request3.send();
+    // }
 
 function mycancel1(s) {
-    edit_button.value = "";
+    // edit_button.value = "";
     delete_button.value = "";
 }
 
@@ -100,91 +105,71 @@ function mydelete(s) {
     request2.open('DELETE', 'https://wk8zqmti4g.execute-api.us-east-1.amazonaws.com/dev_0/', true);
     request2.onload = function () {
         // Do something with the retrieved data ( found in xmlhttp.response )
-        if (edit_button.value == "") {
-            edit_button.value = "";
-            delete_button.value = "";
-        } else {
-            edit_button.value = "";
+        // if (edit_button.value == "") {
+        //     edit_button.value = "";
+        //     delete_button.value = "";
+        // } else {
+            add_button.value = "";
             delete_button.value = "";
             document.location.reload();
-        }
+        // }
 
 
     };
     request2.send(json);
 }
+function uploadFile() {
+            
+    //set all attributes
+    var arr = {};
 
+        //uuid
+        arr["result_id"] = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (dt + Math.random() * 16) % 16 | 0;
+            dt = Math.floor(dt / 16);
+            return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        
+        var files = document.getElementById('input-file-now').files;
+            if (files.length > 0) {
+                getBase64(files[0]);
+            }
+            function getBase64(file) {
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    arr.file=reader.result;
+                    console.log(arr.file)
+                };
+                reader.onerror = function (error) {
+                  console.log('Error: ', error);
+                };
+             }
+        
+    
+
+
+    //Prepare var to REST call api
+    var json = JSON.stringify(arr);
+    console.log(json);
+    //Make REST Api call
+    var request = new XMLHttpRequest();
+    request.open('POST', 'https://0jydgj6uc8.execute-api.us-east-1.amazonaws.com/dev_0', true);
+    request.send(json);
+
+    //Reload Document
+    // document.location.reload();
+
+
+}
 //Add Doctor to db method
 function myadd() {
-
-    //Validation Form
-    if (document.getElementById("product").value == "" || provider.value == "" || price.value == "" || quantity.value == "" || type.value == "" || unit.value == "Selecciona un Opcion") {
-
-        //Initialize tags
-        tag[0].style.color = "black";
-        tag[0].style.fontWeight = 'normal';
-        tag[1].style.color = "black";
-        tag[1].style.fontWeight = 'normal';
-        tag[2].style.color = "black";
-        tag[2].style.fontWeight = 'normal';
-        tag[3].style.color = "black";
-        tag[3].style.fontWeight = 'normal';
-        tag[4].style.color = "black";
-        tag[4].style.fontWeight = 'normal';
-        tag[5].style.color = "black";
-        tag[5].style.fontWeight = 'normal';
-
-        //Complete form Message
-        if (i == 0) {
-            var label = document.createElement("label");
-            var h5 = document.getElementById("h5");
-            label.innerHTML = "*Porfavor de completar los espacios marcados en rojo"
-            label.style.color = "red";
-            h5.appendChild(label);
-            i++;
-        }
-
-        //Change or complete the following input field
-        if (document.getElementById("product").value == "") {
-            tag[0].style.color = "red";
-            tag[0].style.fontWeight = 'bold';
-        }
-
-        if (provider.value == "") {
-            tag[1].style.color = "red";
-            tag[1].style.fontWeight = 'bold';
-        }
-
-        if (type.value == "") {
-            tag[2].style.color = "red";
-            tag[2].style.fontWeight = 'bold';
-        }
-
-        if (quantity.value == "") {
-            tag[3].style.color = "red";
-            tag[3].style.fontWeight = 'bold';
-        }
-
-        if (unit.value == "") {
-            tag[4].style.color = "red";
-            tag[4].style.fontWeight = 'bold';
-        }
-
-        if (price.value == "") {
-            tag[5].style.color = "red";
-            tag[5].style.fontWeight = 'bold';
-        }
-
-    }
-
-    //When there is no error call this else
-    else {
 
         //set all attributes
         var arr = {};
 
-        if (edit_button.value != "") {
-            arr.result_id = edit_button.value;
+        if (add_button.value != "") {
+            arr.result_id = add_button.value;
         }
         else {
             //uuid
@@ -194,13 +179,19 @@ function myadd() {
                 return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
             });
         }
-
-        arr.name = document.getElementById("product").value;
-        arr.family_name = provider.value;
-        arr.store = type.value;
-        arr.quantity = quantity.value;
-        arr.status = unit.value;
-        arr.due_payment = price.value;
+        // arr.date = fulldata[1];
+        // arr.time = fulldata[2];
+        // arr.name = fulldata[3];
+        // arr.family_name = fulldata[4];
+        // arr.client_email = fulldata[5];
+        // arr.store = fulldata[6];
+        // arr.doctor_name = fulldata[7];
+        // arr.doctor_email = fulldata[8];
+        // arr.service_name = fulldata[9];
+        arr.status = mstatus.value;
+        arr.due_payment = newpay.value;
+        // arr.price = fulldata[12];
+        // arr.result = fulldata[13];
 
 
 
@@ -215,18 +206,24 @@ function myadd() {
         //Reload Document
         document.location.reload();
 
-    }
+    
 }
-
+ 
 //Modal function
 function edit_delete_modal(data) {
 
     //Modal Information Config
-    mname.textContent = data[1];
-    mprovider.innerHTML = data[2];
-    mtype.innerHTML = "<address>" + data[3] + "</address>";
-    mqu.textContent = data[4] + " " + data[5];
-    mprice.textContent = data[6];
+    mname.textContent = data[3];
+    mprovider.innerHTML = data[4];
+    mtype.innerHTML = data[5];
+    mqu.textContent = data[6];
+    mdate.textContent = data[1];
+    mtime.textContent = data[2];
+    mcemail.textContent = data[12];
+    mdemail.textContent = data[13];
+    moprice.textContent = data[10];
+    mprice.textContent = data[7];
+    mresult.textContent = data[11];
 
     //Start Modal
     $('#verticalcenter').modal();
@@ -237,7 +234,6 @@ request.onload = function () {
 
     //Access the Respone
     var arr = JSON.parse(this.response);
-
     //Initializer to use the data base
     $(document).ready(function () {
 
@@ -267,7 +263,9 @@ request.onload = function () {
                 arr[i].status,
                 arr[i].due_payment,
                 arr[i].price,
-                arr[i].result
+                arr[i].result,
+                arr[i].client_email,
+                arr[i].doctor_email
             ]).draw(false);
         }
 
@@ -276,9 +274,10 @@ request.onload = function () {
 
             //Get the data On the Table
             var data = table.row(this).data();
-
+            fulldata=table.row(this).data();
+            
             //Initialize both buttons for further use
-            edit_button.value = data[0];
+            add_button.value = data[0];
             delete_button.value = data[0];
 
             //Call Function to start process

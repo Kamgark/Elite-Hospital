@@ -16,6 +16,7 @@
     <!-- Popup CSS -->
     <link href="../assets/node_modules/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
     <link href="dist/css/pages/user-card.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/node_modules/dropify/dist/css/dropify.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -270,7 +271,7 @@
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label class="col-md-12" for="type">
+                                                        <label class="col-md-12" for="type"> 
                                                             Presentacion</span>
                                                         </label>
                                                         <div class="col-md-12">
@@ -280,7 +281,7 @@
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label class="col-md-12" for="quantity">
+                                                     <label class="col-md-12" for="quantity">
                                                             Cantidad</span>
                                                         </label>
                                                         <div class="col-md-12">
@@ -312,7 +313,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button id="add" type="button" class="btn btn-outline-info btn-rounded"><i class="ti-save"></i> Agregar</button>
+                                        <button id="edit" type="button" class="btn btn-outline-info btn-rounded"><i class="ti-save"></i> Agregar</button>
                                         <button id="cancel2" type="button" class="btn btn-inverse waves-effect waves-light" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
@@ -335,9 +336,25 @@
                                         <p id="mtype">Direccion del doctor, calle, ciudad, estado, pais, codigo postal</p>
                                         <h6 id="mqu">Telefono: 1234567891</h6>
                                         <h6 id="mprice">Email: doctor@email.com</h6>
+                                        <div>
+                                                <label >Status</label>
+                                            <select id="mstatus" class="form-control">
+                                                <option>Incomplete</option>
+                                                <option>Paid</option>
+                                                <option>not Paid</option>
+                                            </select>
+                                            <label >Due Payment</label>
+                                            <input type="number" class="form-control" id="newpay">
+                                        </div>
+                                        <h6 id="mdate">Email: doctor@email.com</h6>
+                                        <h6 id="mtime">Email: doctor@email.com</h6>
+                                        <h6 id="mcemail">Email: doctor@email.com</h6>
+                                        <h6 id="mdemail">Email: doctor@email.com</h6>
+                                        <h6 id="moprice">Email: doctor@email.com</h6>
+                                        <h6 id="mresult" style="word-break: break-all">Email: doctor@email.com</h6>
                                     </div>
                                     <div class="modal-footer">
-                                        <button id="edit" type="button" class="btn btn-outline-info btn-rounded" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="ti-pencil"></i> Editar</button>
+                                        <button id="add" type="button" class="btn btn-outline-info btn-rounded"><i class="ti-pencil"></i> Editar</button>
                                         <button id="delete" type="button" class="btn btn-outline-danger btn-rounded"><i class="ti-trash"></i> Borrar</button>
                                         <button id="cancel1" type="button" class="btn btn-inverse waves-effect waves-light" data-dismiss="modal">Cancelar</button>
                                     </div>
@@ -372,6 +389,24 @@
                                         <tbody id="myTable tbody"></tbody>
                                     </table>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">File Upload</h4>
+                                <label for="input-file-now">Upload a pdf file</label>
+                                <input type="file" id="input-file-now" class="dropify" accept="application/pdf" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <input type="button" id="upload" value="submit"/>
                             </div>
                         </div>
                     </div>
@@ -486,7 +521,7 @@
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
-    <script>
+    <!-- <script>
         $(function () {
 
             $(function () {
@@ -533,9 +568,52 @@
             ]
         });
         $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
-    </script>
+    </script> -->
 
     <!-- List of doctors from AWS -->
+    <script src="../assets/node_modules/dropify/dist/js/dropify.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Basic
+        $('.dropify').dropify();
+
+        // Translated
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-déposez un fichier ici ou cliquez',
+                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                remove: 'Supprimer',
+                error: 'Désolé, le fichier trop volumineux'
+            }
+        });
+
+        // Used events
+        var drEvent = $('#input-file-events').dropify();
+
+        drEvent.on('dropify.beforeClear', function(event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+
+        drEvent.on('dropify.afterClear', function(event, element) {
+            alert('File deleted');
+        });
+
+        drEvent.on('dropify.errors', function(event, element) {
+            console.log('Has Errors');
+        });
+
+        var drDestroy = $('#input-file-to-destroy').dropify();
+        drDestroy = drDestroy.data('dropify')
+        $('#toggleDropify').on('click', function(e) {
+            e.preventDefault();
+            if (drDestroy.isDropified()) {
+                drDestroy.destroy();
+            } else {
+                drDestroy.init();
+            }
+        })
+    });
+    </script>
     <script src="js/result.js"></script>
 </body>
 

@@ -266,7 +266,7 @@ request.onload = function () {
                 arr[i].due_payment,
                 arr[i].family_name,
                 arr[i].name,
-                arr[i].price,
+                arr[i].price, 
                 arr[i].result,
                 arr[i].service_name,
                 arr[i].status,
