@@ -249,51 +249,51 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="col-md-12" for="product">
-                                                            Insumo</span>
+                                                        <label class="col-md-12" for="ename">
+                                                            Name</span>
                                                         </label>
                                                         <div class="col-md-12">
-                                                            <input type="text" id="product" name="product" class="form-control" placeholder="Nombre de Insumo">
+                                                            <input type="text" id="ename" name="ename" class="form-control" placeholder="Nombre de Insumo" disabled>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="col-md-12" for="provider">
-                                                            Proveedor</span>
+                                                        <label class="col-md-12" for="efamily">
+                                                            Family Name</span>
                                                         </label>
                                                         <div class="col-md-12">
-                                                            <input type="text" id="provider" name="provider" class="form-control" placeholder="Nombre de Proveedor">
+                                                            <input type="text" id="efamily" name="efamily" class="form-control" placeholder="Nombre de Proveedor" disabled>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-4"> 
                                                     <div class="form-group">
-                                                        <label class="col-md-12" for="type"> 
-                                                            Presentacion</span>
+                                                        <label class="col-md-12" for="estore"> 
+                                                            Store</span>
                                                         </label>
                                                         <div class="col-md-12">
-                                                            <input type="text" id="type" name="type" class="form-control" placeholder="Ej. Caja">
+                                                            <input type="text" id="estore" name="estore" class="form-control" placeholder="Ej. Caja" disabled>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
-                                                     <label class="col-md-12" for="quantity">
-                                                            Cantidad</span>
+                                                     <label class="col-md-12" for="eservice">
+                                                            Services</span>
                                                         </label>
                                                         <div class="col-md-12">
-                                                            <input type="text" id="quantity" name="quantity" class="form-control" placeholder="Ej. 10">
+                                                            <input type="text" id="eservice" name="eservice" class="form-control" placeholder="Ej. 10" disabled>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label class="col-sm-12">Unidades</label>
+                                                        <label class="col-sm-12">Status</label>
                                                         <div class="col-sm-12">
-                                                            <select id="unit" class="form-control">
+                                                            <select id="estatus" class="form-control">
                                                                 <option>Incomplete</option>
                                                                 <option>Paid</option>
                                                                 <option>not Paid</option>
@@ -302,18 +302,32 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12" for="price">
-                                                    Precio ($)</span>
-                                                </label>
-                                                <div class="col-md-12">
-                                                    <input type="text" id="price" name="price" class="form-control" placeholder="150.00">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-md-12" for="equantity">
+                                                            Quantity</span>
+                                                        </label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" id="equantity" name="equantity" class="form-control" placeholder="150.00">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-md-12" for="eprice">
+                                                            Precio ($)</span>
+                                                        </label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" id="eprice" name="eprice" class="form-control" placeholder="150.00" disabled>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button id="edit" type="button" class="btn btn-outline-info btn-rounded"><i class="ti-save"></i> Agregar</button>
+                                        <button id="add" type="button" class="btn btn-outline-info btn-rounded"><i class="ti-save"></i> Agregar</button>
                                         <button id="cancel2" type="button" class="btn btn-inverse waves-effect waves-light" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
@@ -324,7 +338,7 @@
                         <!-- /.modal -->
                         <!-- sample modal content -->
                         <div id="verticalcenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title" id="vcenter">Insumo</h4>
@@ -332,29 +346,16 @@
                                     </div>
                                     <div class="modal-body">
                                         <h4 id="mname">Nombre del Doctor</h4>
-                                        <small id="mprovider">Especialidad - licencia</small>
-                                        <p id="mtype">Direccion del doctor, calle, ciudad, estado, pais, codigo postal</p>
-                                        <h6 id="mqu">Telefono: 1234567891</h6>
+                                        <small id="mfamily">Especialidad - licencia</small>
+                                        <p id="mdoctor">Direccion del doctor, calle, ciudad, estado, pais, codigo postal</p>
+                                        <h6 id="mservice">Telefono: 1234567891</h6>
+                                        <h6 id="mstore">Email: doctor@email.com</h6>
                                         <h6 id="mprice">Email: doctor@email.com</h6>
-                                        <div>
-                                                <label >Status</label>
-                                            <select id="mstatus" class="form-control">
-                                                <option>Incomplete</option>
-                                                <option>Paid</option>
-                                                <option>not Paid</option>
-                                            </select>
-                                            <label >Due Payment</label>
-                                            <input type="number" class="form-control" id="newpay">
-                                        </div>
-                                        <h6 id="mdate">Email: doctor@email.com</h6>
-                                        <h6 id="mtime">Email: doctor@email.com</h6>
-                                        <h6 id="mcemail">Email: doctor@email.com</h6>
-                                        <h6 id="mdemail">Email: doctor@email.com</h6>
-                                        <h6 id="moprice">Email: doctor@email.com</h6>
-                                        <h6 id="mresult" style="word-break: break-all">Email: doctor@email.com</h6>
                                     </div>
                                     <div class="modal-footer">
-                                        <button id="add" type="button" class="btn btn-outline-info btn-rounded"><i class="ti-pencil"></i> Editar</button>
+                                        <button id="send"type="button" class="btn waves-effect waves-light btn-rounded btn-outline-success" data-toggle="modal" data-target="#verticalcenter1">Send</button>
+                                        <button id="resend" type="button" class="btn waves-effect waves-light btn-rounded btn-outline-success">Resend</button>
+                                        <button id="edit" type="button" class="btn btn-outline-info btn-rounded" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="ti-pencil"></i> Editar</button>
                                         <button id="delete" type="button" class="btn btn-outline-danger btn-rounded"><i class="ti-trash"></i> Borrar</button>
                                         <button id="cancel1" type="button" class="btn btn-inverse waves-effect waves-light" data-dismiss="modal">Cancelar</button>
                                     </div>
@@ -363,6 +364,31 @@
                             </div>
                             <!-- /.modal-dialog -->
                         </div>
+                        <div id="verticalcenter1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="vcenter">Send Results</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+                                        </div>
+                                        <div class="modal-body">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h4 class="card-title">File Upload</h4>
+                                                                <label for="input-file-now">Upload a pdf file</label>
+                                                                <input type="file" id="input-file-now" class="dropify" accept="application/pdf" />
+                                                            </div>
+                                                        </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="send_result"type="button" class="btn waves-effect waves-light btn-rounded btn-outline-success">Send</button>
+                                            <button id="cancel3" type="button" class="btn btn-inverse waves-effect waves-light" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
                         <!-- /.modal -->
                         <div class="card">
                             <div class="card-body">
@@ -389,24 +415,6 @@
                                         <tbody id="myTable tbody"></tbody>
                                     </table>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">File Upload</h4>
-                                <label for="input-file-now">Upload a pdf file</label>
-                                <input type="file" id="input-file-now" class="dropify" accept="application/pdf" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <input type="button" id="upload" value="submit"/>
                             </div>
                         </div>
                     </div>
@@ -521,7 +529,7 @@
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
-    <!-- <script>
+    <script>
         $(function () {
 
             $(function () {
@@ -568,7 +576,7 @@
             ]
         });
         $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
-    </script> -->
+    </script>
 
     <!-- List of doctors from AWS -->
     <script src="../assets/node_modules/dropify/dist/js/dropify.min.js"></script>

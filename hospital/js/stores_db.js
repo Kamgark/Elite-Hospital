@@ -135,7 +135,7 @@ cancel1_button.addEventListener("click", function () { mycancel1(this.value); })
 function myform() {
 
     //Validation Form
-    if (document.getElementById("form-name").value == "" || form_fname.value == "" || form_gender.value == "" || form_age.value == ""|| form_store.value == ""|| form_services.value == ""|| form_wayToPay.value == ""|| form_price.value == ""|| form_status.value == ""|| form_discount.value == ""|| form_duePayment.value == "") {
+    if (document.getElementById("form-name").value == "" || form_fname.value == "" || form_gender.value == "" || form_age.value == ""|| form_store.value == ""|| form_services.value == ""|| form_wayToPay.value == ""|| form_price.value == ""|| form_status.value == ""|| form_discount.value == "") {
 
         //Initialize tags
         tag[0].style.color = "black";
@@ -156,8 +156,8 @@ function myform() {
         tag[9].style.fontWeight = 'normal';
         tag[10].style.color = "black";
         tag[10].style.fontWeight = 'normal';
-        tag[11].style.color = "black";
-        tag[11].style.fontWeight = 'normal';
+        // tag[11].style.color = "black";
+        // tag[11].style.fontWeight = 'normal';
         tag[12].style.color = "black";
         tag[12].style.fontWeight = 'normal';
 
@@ -210,10 +210,10 @@ function myform() {
             tag[10].style.color = "red";
             tag[10].style.fontWeight = 'bold';
         }
-        if (document.getElementById("form-duePayment").value == "") {
-            tag[11].style.color = "red";
-            tag[11].style.fontWeight = 'bold';
-        }
+        // if (document.getElementById("form-duePayment").value == "") {
+        //     tag[11].style.color = "red";
+        //     tag[11].style.fontWeight = 'bold';
+        // }
         if (document.getElementById("form-discount").value == "") {
             tag[12].style.color = "red";
             tag[12].style.fontWeight = 'bold';
