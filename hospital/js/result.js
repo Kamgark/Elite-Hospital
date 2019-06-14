@@ -163,7 +163,7 @@ function mycancel3(s) {
 
 function mydelete(s) {
     var arr2 = {};
-    arr2.product_id = s;
+    arr2.result_id = s;
     var json = JSON.stringify(arr2);
     //alert(json);
     // Create a request variable and assign a new XMLHttpRequest object to it.
